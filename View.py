@@ -1631,7 +1631,6 @@ def clic_plateau_jeu1(event):
     global flag_partie_prete
     if flag_partie_prete:
         global tour
-        print("tour=", tour)
         if tour == 1:
             i = event.y // TAILLE_DE_CARRES
             j = event.x // TAILLE_DE_CARRES
@@ -1639,21 +1638,11 @@ def clic_plateau_jeu1(event):
                 tour = 2
                 grille1[i][j] = 1
                 plateau1.itemconfigure(i * 10 + j + 1, fill="white")
-                print(grille1)
-                print("Ligne=", i + 1, "Colonne=", j + 1)
             elif grille1[i][j] == 3:
                 tour = 2
                 grille1[i][j] = 1
                 plateau1.itemconfigure(i * 10 + j + 1, fill="red")
-                print(grille1)
-                print("Ligne=", i + 1, "Colonne=", j + 1)
-            else:
-                print("Veuillez sélectionner une autre case")
             test_victoire()
-        else:
-            print("Ce n'est pas votre tour")
-    else:
-        print("configurer bateaux")
 
 
 def creer_symboles():
@@ -1674,10 +1663,8 @@ def clic_plateau_jeu2(event):
     global action_joueur
     global coords
     global flag_partie_prete
-    print(flag_partie_prete)
     if flag_partie_prete:
         global tour
-        print("tour=", tour)
         if tour == 2:
             i = event.y // TAILLE_DE_CARRES
             j = event.x // TAILLE_DE_CARRES
@@ -1711,19 +1698,15 @@ def clic_plateau_jeu2(event):
                 action_joueur.grid(row = 16, column = 25, sticky = "nsew")
                 action_joueur.create_text(170, 25, text = entrer_pseudo.get() + " tire en " + coords[i] + str(j+1) + " : TOUCHÉ !", font = ("Andi 20 bold", 19), fill = "white")
                 play_explosion()
-            else:
-                print("Veuillez sélectionner une autre case")
+
             test_victoire2()
-        else:
-            print("Ce n'est pas votre tour")
+
         if niv_facile:
             frame_jeu.after(700, bot_facile)
         if niv_moyen:
             frame_jeu.after(700, bot_moyen)
         if niv_difficile:
             frame_jeu.after(700, bot_difficile)
-    else:
-        print("configurer bateaux")
 
                  
 # Actions du bot si difficulté facile enclenchée
@@ -1738,7 +1721,7 @@ def bot_facile():
     global flag_partie_prete
     if flag_partie_prete:
         global tour
-        print("tour=", tour)
+
         if tour == 1:
             i = random.randint(0,9)
             j = random.randint(0,9)
@@ -1792,7 +1775,7 @@ def bot_moyen():
     tir = chance[random.randint(0,2)]
     if flag_partie_prete:
         global tour
-        print("tour=", tour)
+
         if tour == 1:
             i = random.randint(0,9)
             j = random.randint(0,9)
@@ -1846,7 +1829,7 @@ def bot_difficile():
     tir = chance[random.randint(0,1)]
     if flag_partie_prete:
         global tour
-        print("tour=", tour)
+
         if tour == 1:
             i = random.randint(0,9)
             j = random.randint(0,9)
@@ -1872,7 +1855,7 @@ def bot_difficile():
                 grille1[i][j] = 2
                 plateau1.create_image(j*TAILLE_DE_CARRES+2,i*TAILLE_DE_CARRES, image = explo, anchor=NW, tags = "images")
                 total_sante -= 100/17
-                print(total_sante)
+
                 sante_joueur['value'] = total_sante
                 action_bot.destroy()
                 action_bot = Canvas(frame_jeu,
@@ -2164,7 +2147,7 @@ def deplacements_bateaux(event):
     
     # Positionne le bateau à l'endroit de la souris
     widget.place(x = x, y = y)
-    print(x,y)
+
     # Flag de déplacement du bateau (sert au flip et positionnement)
     global bateau_statique
     bateau_statique = False
@@ -2222,8 +2205,7 @@ def positionnement(event):
     # Détermine les coordonnées du bateau
     x = widget.winfo_x() 
     y = widget.winfo_y() 
-    
-    print(x, y)
+
     
     # Détermine la taille du bateau
     largeur = widget.winfo_width() 
@@ -2691,7 +2673,6 @@ def creation_canvas_frame_victoire():
     
     global canvas_frame_victoire_sante
     canvas_frame_victoire_sante = Canvas(frame_victoire,
-                                         bg = "red",
                                          width = 100,
                                          height = 60,
                                          border = 0,
@@ -2702,7 +2683,6 @@ def creation_canvas_frame_victoire():
     
     global canvas_frame_victoire_timer
     canvas_frame_victoire_timer = Canvas(frame_victoire,
-                                         bg = "red",
                                          width = 100,
                                          height = 60,
                                          border = 0,
@@ -2713,7 +2693,6 @@ def creation_canvas_frame_victoire():
     
     global canvas_frame_victoire_precision_joueur
     canvas_frame_victoire_precision_joueur = Canvas(frame_victoire,
-                                             bg = "red",
                                              width = 100,
                                              height = 60,
                                              border = 0,
@@ -2724,7 +2703,6 @@ def creation_canvas_frame_victoire():
     
     global canvas_frame_victoire_precision_bot
     canvas_frame_victoire_precision_bot = Canvas(frame_victoire,
-                                             bg = "red",
                                              width = 100,
                                              height = 60,
                                              border = 0,

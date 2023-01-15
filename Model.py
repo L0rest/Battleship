@@ -144,7 +144,6 @@ def fin_de_partie():
                 calcul_tirs_reussis_bot += 1
             if grille2[i][j] == 2:
                 calcul_tirs_reussis_joueur += 1
-                print("i=",i," j=",j)
             grille1[i][j] = 4
             grille2[i][j] = 4
     precision_bot = calcul_tirs_reussis_bot / calcul_tirs_bot * 100
